@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "todo": "apps/todo",
+    "todo-e2e": "apps/todo-e2e"
+  }
+}
