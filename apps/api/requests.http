@@ -25,6 +25,16 @@ POST http://localhost:3333/api/auth/signup
 Content-Type: application/json
 
 {
-    "email": "hello@world.com",
+    "username": "Nugzar",
+    "email": "test@test.com",
+    "password": "hello_world"
+}
+
+### Sign in
+POST http://localhost:3333/api/auth/signin
+Content-Type: application/json
+
+{
+    "email": "test@test.com",
     "password": "hello_world"
 }
