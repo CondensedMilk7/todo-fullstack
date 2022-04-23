@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
 import { TodoItem } from './todo/todo-item.entity';
+import { AuthModule } from './auth/auth.module';
+import { User } from './auth/user.entity';
 
 @Module({
   imports: [
@@ -25,10 +27,11 @@ import { TodoItem } from './todo/todo-item.entity';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db.sqlite',
-      entities: [TodoItem],
+      entities: [TodoItem, User],
       synchronize: true,
     }),
     TodoModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [

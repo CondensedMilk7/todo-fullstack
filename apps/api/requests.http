@@ -1,11 +1,30 @@
-### Get hello
-GET http://localhost:3333/api/hello
+### Get all items
+GET http://localhost:3333/api
 
 ### Create a new to do item
 POST http://localhost:3333/api
 Content-Type: application/json
 
 {
-    "description": "",
+    "description": "Buy groceries",
     "done": false
+}
+
+### Update existing item
+PATCH http://localhost:3333/api
+Content-Type: application/json
+
+{
+    "id": 4,
+    "description": "Buy bread",
+    "done": false
+}
+
+### Sign up a new user
+POST http://localhost:3333/api/auth/signup
+Content-Type: application/json
+
+{
+    "email": "hello@world.com",
+    "password": "hello_world"
 }

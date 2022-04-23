@@ -16,7 +16,7 @@ describe('AppController', () => {
   describe('getData', () => {
     it('should return "Welcome to api!"', () => {
       const todoController = app.get<TodoController>(TodoController);
-      expect(todoController.getData()).toEqual({ message: 'Welcome to api!' });
+      expect(todoController.getItems()).toEqual({ message: 'Welcome to api!' });
     });
   });
 });
