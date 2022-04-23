@@ -1,3 +1,4 @@
-export interface Message {
-  message: string;
+export interface TodoItem {
+  description: string;
+  done: boolean;
 }

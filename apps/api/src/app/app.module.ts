@@ -1,11 +1,38 @@
-import { Module } from '@nestjs/common';
-
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { Module, ValidationPipe } from '@nestjs/common';
+import { TodoModule } from './todo/todo.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_PIPE } from '@nestjs/core';
+import { TodoItem } from './todo/todo-item.entity';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    // ConfigModule.forRoot({
+    //   isGlobal: true,
+    //   envFilePath: `../../.env.${process.env.NODE_ENV}`,
+    // }),
+    // TypeOrmModule.forRootAsync({
+    //   inject: [ConfigService],
+    //   useFactory: (config: ConfigService) => {
+    //     return {
+    //       type: 'sqlite',
+    //       database: config.get<string>('DB_NAME'),
+    //       synchronize: true,
+    //       entities: [],
+    //     };
+    //   },
+    // }),
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: 'db.sqlite',
+      entities: [TodoItem],
+      synchronize: true,
+    }),
+    TodoModule,
+  ],
+  controllers: [],
+  providers: [
+    { provide: APP_PIPE, useValue: new ValidationPipe({ whitelist: true }) },
+  ],
 })
 export class AppModule {}

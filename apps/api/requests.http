@@ -1,0 +1,11 @@
+### Get hello
+GET http://localhost:3333/api/hello
+
+### Create a new to do item
+POST http://localhost:3333/api
+Content-Type: application/json
+
+{
+    "description": "",
+    "done": false
+}
