@@ -1,10 +1,11 @@
-import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../guards/jwt.guard';
 import { CreateItemDto } from './dtos/create-item.dto';
-import { ItemDto } from './dtos/item.dto';
 import { UpdateItemDto } from './dtos/update-item.dto';
 import { TodoService } from './todo.service';
 
 @Controller()
+@UseGuards(JwtAuthGuard)
 export class TodoController {
   constructor(private readonly TodoService: TodoService) {}
 

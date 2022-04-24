@@ -1,5 +1,6 @@
 ### Get all items
 GET http://localhost:3333/api
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiTnVnemFyIiwiaWF0IjoxNjUwODA2MTM3LCJleHAiOjE2NTA4OTI1Mzd9.FZRBeUTB34b0LbY9Vqw64EK4zujE22gb7U5iOAzb8qk
 
 ### Create a new to do item
 POST http://localhost:3333/api
@@ -25,8 +26,8 @@ POST http://localhost:3333/api/auth/signup
 Content-Type: application/json
 
 {
-    "username": "Nugzar",
-    "email": "test@test.com",
+    "username": "Malkhaz",
+    "email": "test@test4.com",
     "password": "hello_world"
 }
 
@@ -38,3 +39,7 @@ Content-Type: application/json
     "email": "test@test.com",
     "password": "hello_world"
 }
+
+### Get currently signed in user id (test route)
+GET http://localhost:3333/api/auth/whoami
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiTnVnemFyIiwiaWF0IjoxNjUwODA2MTM3LCJleHAiOjE2NTA4OTI1Mzd9.FZRBeUTB34b0LbY9Vqw64EK4zujE22gb7U5iOAzb8qk
