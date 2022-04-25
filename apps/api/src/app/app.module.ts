@@ -14,6 +14,8 @@ import path = require('path');
 @Global()
 @Module({
   imports: [
+    // For testing...
+
     // ConfigModule.forRoot({
     //   isGlobal: true,
     //   envFilePath: `../../.env.${process.env.NODE_ENV}`,
