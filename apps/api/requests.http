@@ -1,23 +1,25 @@
 ### Get all items
 GET http://localhost:3333/api
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiTnVnemFyIiwiaWF0IjoxNjUwODA2MTM3LCJleHAiOjE2NTA4OTI1Mzd9.FZRBeUTB34b0LbY9Vqw64EK4zujE22gb7U5iOAzb8qk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoiTnVnemFyIiwiaWF0IjoxNjUwODcwOTE4LCJleHAiOjE2NTA5NTczMTh9.9X-4yXfZV9q1eDroHfS44m_ZQbvqCjnakCaAEj2dax0
 
 ### Create a new to do item
 POST http://localhost:3333/api
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoiTnVnemFyIiwiaWF0IjoxNjUwODcwOTE4LCJleHAiOjE2NTA5NTczMTh9.9X-4yXfZV9q1eDroHfS44m_ZQbvqCjnakCaAEj2dax0
 
 {
-    "description": "Buy groceries",
-    "done": false
+    "description": "Ask her out"
 }
 
 ### Update existing item
 PATCH http://localhost:3333/api
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoiTnVnemFyIiwiaWF0IjoxNjUwODcwOTE4LCJleHAiOjE2NTA5NTczMTh9.9X-4yXfZV9q1eDroHfS44m_ZQbvqCjnakCaAEj2dax0
+
 
 {
-    "id": 4,
-    "description": "Buy bread",
+    "id": 5,
+    "description": "Listen to Charlie Parker",
     "done": false
 }
 
@@ -26,8 +28,8 @@ POST http://localhost:3333/api/auth/signup
 Content-Type: application/json
 
 {
-    "username": "Malkhaz",
-    "email": "test@test4.com",
+    "username": "Nugzar",
+    "email": "test@test1.com",
     "password": "hello_world"
 }
 
@@ -36,10 +38,10 @@ POST http://localhost:3333/api/auth/signin
 Content-Type: application/json
 
 {
-    "email": "test@test.com",
+    "email": "test@test1.com",
     "password": "hello_world"
 }
 
 ### Get currently signed in user id (test route)
 GET http://localhost:3333/api/auth/whoami
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiTnVnemFyIiwiaWF0IjoxNjUwODA2MTM3LCJleHAiOjE2NTA4OTI1Mzd9.FZRBeUTB34b0LbY9Vqw64EK4zujE22gb7U5iOAzb8qk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoiTnVnemFyIiwiaWF0IjoxNjUwODcwOTE4LCJleHAiOjE2NTA5NTczMTh9.9X-4yXfZV9q1eDroHfS44m_ZQbvqCjnakCaAEj2dax0

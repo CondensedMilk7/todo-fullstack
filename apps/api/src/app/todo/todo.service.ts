@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { User } from '../auth/user.entity';
 import { CreateItemDto } from './dtos/create-item.dto';
 import { UpdateItemDto } from './dtos/update-item.dto';
 import { TodoItem } from './todo-item.entity';
@@ -8,12 +9,20 @@ import { TodoItem } from './todo-item.entity';
 @Injectable()
 export class TodoService {
   constructor(@InjectRepository(TodoItem) private repo: Repository<TodoItem>) {}
-  getItems() {
-    return this.repo.createQueryBuilder().select('*').getRawMany();
+
+  async getItems(user: User) {
+    const data = await this.repo
+      .createQueryBuilder('todo')
+      .relation('user')
+      .select('todo')
+      .where('userId = :id', { id: user.id })
+      .getMany();
+    return { data };
   }
 
-  createItem(body: CreateItemDto) {
+  createItem(body: CreateItemDto, user: User) {
     const item = this.repo.create(body);
+    item.user = user;
     return this.repo.save(item);
   }
 

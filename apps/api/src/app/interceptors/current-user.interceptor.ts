@@ -10,18 +10,23 @@ import { AuthService } from '../auth/auth.service';
 @Injectable()
 export class CurrentUserInterceptor implements NestInterceptor {
   constructor(
-    private authService: AuthService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
+    private authService: AuthService
   ) {}
 
   async intercept(context: ExecutionContext, handler: CallHandler) {
     const request = context.switchToHttp().getRequest();
-    const token = request.headers['authorization'].split('Bearer ')[1];
-    const decodedToken = this.jwtService.decode(token);
-    const userId = decodedToken['userId'];
-    console.log(userId);
-    if (userId) {
-      request.currentUserId = userId;
+    const header = request.headers['authorization'];
+
+    if (header) {
+      const token = header.split('Bearer ')[1] || null;
+
+      if (token) {
+        const decodedToken = this.jwtService.decode(token);
+        const userId = decodedToken['userId'];
+        const user = await this.authService.findOne(userId);
+        request.user = user;
+      }
     }
 
     return handler.handle();

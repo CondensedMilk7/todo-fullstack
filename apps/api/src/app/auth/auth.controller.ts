@@ -1,38 +1,28 @@
-import {
-  Body,
-  ClassSerializerInterceptor,
-  Controller,
-  Get,
-  Post,
-  UseGuards,
-  UseInterceptors,
-} from '@nestjs/common';
-import { UserId } from '../decorators/user-id.decorator';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { CurrentUser } from '../decorators/current-user.decorator';
 import { JwtAuthGuard } from '../guards/jwt.guard';
-import { CurrentUserInterceptor } from '../interceptors/current-user.interceptor';
 import { AuthService } from './auth.service';
 import { SigninDto } from './dtos/signin.dto';
 import { SignupDto } from './dtos/signup.dto';
+import { User } from './user.entity';
 
-@UseInterceptors(ClassSerializerInterceptor, CurrentUserInterceptor)
 @Controller('/auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Get('/whoami')
   @UseGuards(JwtAuthGuard)
-  whoami(@UserId() userId: number) {
-    return { message: `Your id is ${userId}` };
+  whoami(@CurrentUser() user: User) {
+    return { message: `Your username is ${user.username}` };
   }
 
   @Post('/signup')
-  async signup(@Body() body: SignupDto) {
-    const user = await this.authService.signup(body);
-    return user;
+  signup(@Body() body: SignupDto) {
+    return this.authService.signup(body);
   }
 
   @Post('/signin')
-  async signin(@Body() body: SigninDto) {
+  signin(@Body() body: SigninDto) {
     return this.authService.signin(body);
   }
 }

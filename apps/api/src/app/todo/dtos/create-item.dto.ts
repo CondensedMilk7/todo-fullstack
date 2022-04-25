@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateItemDto {
   @IsString()
@@ -6,5 +6,6 @@ export class CreateItemDto {
   description: string;
 
   @IsBoolean()
+  @IsOptional()
   done: boolean;
 }

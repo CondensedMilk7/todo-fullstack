@@ -1,12 +1,17 @@
-import { Module, ValidationPipe } from '@nestjs/common';
+import { Global, Module, ValidationPipe } from '@nestjs/common';
 import { TodoModule } from './todo/todo.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 // import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_PIPE } from '@nestjs/core';
+import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { TodoItem } from './todo/todo-item.entity';
 import { AuthModule } from './auth/auth.module';
 import { User } from './auth/user.entity';
+import { JwtModule } from '@nestjs/jwt';
+import { environment } from '../environments/environment';
+import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
+import path = require('path');
 
+@Global()
 @Module({
   imports: [
     // ConfigModule.forRoot({
@@ -26,16 +31,29 @@ import { User } from './auth/user.entity';
     // }),
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'db.sqlite',
+      database: path.join(
+        __dirname,
+        'apps',
+        'api',
+        'src',
+        'database',
+        'db.sqlite'
+      ),
       entities: [TodoItem, User],
       synchronize: true,
+    }),
+    JwtModule.register({
+      secret: environment.jwt.secret,
+      signOptions: { expiresIn: environment.jwt.expiresIn },
     }),
     TodoModule,
     AuthModule,
   ],
+  exports: [JwtModule],
   controllers: [],
   providers: [
     { provide: APP_PIPE, useValue: new ValidationPipe({ whitelist: true }) },
+    { provide: APP_INTERCEPTOR, useClass: CurrentUserInterceptor },
   ],
 })
 export class AppModule {}
