@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Param,
   Patch,
   Post,
   UseGuards,
@@ -39,8 +40,8 @@ export class TodoController {
     return this.todoService.updateItem(body, currentUser);
   }
 
-  @Delete()
-  deleteItem(@Body() body: DeleteItemDto, @CurrentUser() currentUser: User) {
-    return this.todoService.deleteItem(body, currentUser);
+  @Delete(':id')
+  deleteItem(@Param('id') id: string, @CurrentUser() currentUser: User) {
+    return this.todoService.deleteItem(parseInt(id), currentUser);
   }
 }

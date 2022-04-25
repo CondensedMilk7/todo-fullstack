@@ -1,0 +1,3 @@
+<ng-container *ngIf="items$ | async as items">
+  <todo-item *ngFor="let item of items" [item]="item"></todo-item
+></ng-container>
