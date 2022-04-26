@@ -43,7 +43,7 @@ POST http://localhost:3333/api/auth/signin
 Content-Type: application/json
 
 {
-    "email": "test@test1.com",
+    "email": "test@test.com",
     "password": "hello_world"
 }
 

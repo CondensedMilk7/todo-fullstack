@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { TodoComponent } from './todo/todo.component';
+import { AuthComponent } from './auth/auth.component';
 
 export const appRoutes: Routes = [
-  { path: '', component: TodoComponent, pathMatch: 'full' },
+  { path: '', component: AuthComponent, pathMatch: 'full' },
 ];
