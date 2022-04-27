@@ -1,6 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
-import { TodoActions } from './store/actions';
 import { TodoSelectors } from './store/selectors';
 
 @Component({
@@ -8,6 +12,7 @@ import { TodoSelectors } from './store/selectors';
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TodoComponent implements OnInit {
   constructor(private store: Store) {}

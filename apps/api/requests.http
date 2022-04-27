@@ -44,7 +44,7 @@ Content-Type: application/json
 
 {
     "email": "test@test.com",
-    "password": "hello_world"
+    "password": "hello_worldd"
 }
 
 ### Get currently signed in user id (test route)

@@ -14,6 +14,9 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './auth/auth.guard';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +28,9 @@ import { MatIconModule } from '@angular/material/icon';
     AuthModule,
     MatToolbarModule,
     MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
+    MatProgressBarModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),

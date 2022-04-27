@@ -28,7 +28,14 @@
                   formControlName="password"
                 />
               </mat-form-field>
-              <button mat-button color="primary" type="submit">Sign In</button>
+              <button
+                mat-button
+                color="primary"
+                type="submit"
+                [disabled]="signinForm.invalid || (loading$ | async)"
+              >
+                Sign In
+              </button>
             </form>
           </mat-card-content>
         </div>
@@ -69,7 +76,14 @@
                   formControlName="password"
                 />
               </mat-form-field>
-              <button mat-button color="primary" type="submit">Sign Up</button>
+              <button
+                mat-button
+                color="primary"
+                type="submit"
+                [disabled]="signupForm.invalid || (loading$ | async)"
+              >
+                Sign Up
+              </button>
             </form>
           </mat-card-content>
         </div>

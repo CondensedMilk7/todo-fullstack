@@ -1,15 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
-import { AuthUtils } from '../../auth.utils';
 import { AuthActions, AuthApiActions } from '../actions';
 import { AuthState } from '../state/';
 
 const initialState: AuthState = {
-  authenticated: AuthUtils.checkToken(),
+  authenticated: localStorage.getItem('access_token') ? true : false,
   error: '',
   loading: false,
   user: {
-    username: '',
-    id: 0,
+    username: localStorage.getItem('username') || '',
+    id: parseInt(localStorage.getItem('user_id') || '0'),
   },
   token: {
     iat: 0,
@@ -25,7 +24,7 @@ export const authReducer = createReducer(
   on(AuthApiActions.signinSuccess, (state, { decodedToken }) => ({
     ...state,
     loading: false,
-    authenticated: AuthUtils.checkToken(),
+    authenticated: true,
     user: {
       id: decodedToken.userId,
       username: decodedToken.username,
@@ -46,7 +45,7 @@ export const authReducer = createReducer(
   on(AuthApiActions.signupSuccess, (state, { decodedToken }) => ({
     ...state,
     loading: false,
-    authenticated: AuthUtils.checkToken(),
+    authenticated: true,
     user: {
       id: decodedToken.userId,
       username: decodedToken.username,

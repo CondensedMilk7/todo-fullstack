@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { SigninRequest } from '@todo/api-interfaces';
+import { SigninRequest, SignupRequest } from '@todo/api-interfaces';
 import { AuthService } from './auth.service';
 import { AuthActions } from './store/actions';
 import { AuthSelectors } from './store/selectors';
@@ -10,6 +14,8 @@ import { AuthSelectors } from './store/selectors';
   selector: 'todo-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class AuthComponent {
   // selectors
@@ -38,7 +44,6 @@ export class AuthComponent {
   constructor(private authService: AuthService, private store: Store) {}
 
   onSignin() {
-    console.log(this.signinForm.value);
     this.store.dispatch(
       AuthActions.signIn({ payload: this.signinForm.value as SigninRequest }) // Type anotation just to be explicit
     );
@@ -46,7 +51,7 @@ export class AuthComponent {
 
   onSignup() {
     this.store.dispatch(
-      AuthActions.signIn({ payload: this.signinForm.value as SigninRequest })
+      AuthActions.signUp({ payload: this.signupForm.value as SignupRequest })
     );
   }
 }

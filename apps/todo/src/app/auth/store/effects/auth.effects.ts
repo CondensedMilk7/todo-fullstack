@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { DecodedToken, ErrorResponse } from '@todo/api-interfaces';
+import { DecodedToken } from '@todo/api-interfaces';
 import { catchError, concatMap, map, of, tap } from 'rxjs';
 import { AuthService } from '../../auth.service';
 import { AuthActions, AuthApiActions } from '../actions';
@@ -16,13 +17,14 @@ export class AuthEffects {
         this.authService.signin(payload).pipe(
           map((response) => {
             const token = response.access_token;
-            localStorage.setItem('access_token', token);
             const decodedToken = this.decodeToken(token);
+            this.saveUserData(decodedToken);
             return AuthApiActions.signinSuccess({ decodedToken });
           }),
-          catchError((error: ErrorResponse) =>
-            of(AuthApiActions.signinFail({ response: error }))
-          )
+          catchError(({ error }) => {
+            this.snackBar.open(error.message || error.error);
+            return of(AuthApiActions.signinFail({ response: error }));
+          })
         )
       )
     );
@@ -32,16 +34,17 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.signUp),
       concatMap(({ payload }) =>
-        this.authService.signin(payload).pipe(
+        this.authService.signup(payload).pipe(
           map((response) => {
             const token = response.access_token;
-            localStorage.setItem('access_token', token);
             const decodedToken = this.decodeToken(token);
+            this.saveUserData(decodedToken);
             return AuthApiActions.signupSuccess({ decodedToken });
           }),
-          catchError((error: ErrorResponse) =>
-            of(AuthApiActions.signupFail({ response: error }))
-          )
+          catchError(({ error }) => {
+            this.snackBar.open(error.message || error.error);
+            return of(AuthApiActions.signupFail({ response: error }));
+          })
         )
       )
     );
@@ -53,6 +56,8 @@ export class AuthEffects {
         ofType(AuthActions.signOut),
         tap(() => {
           localStorage.removeItem('access_token');
+          localStorage.removeItem('username');
+          localStorage.removeItem('user_id');
           this.router.navigate(['/auth']);
         })
       );
@@ -65,7 +70,6 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(AuthApiActions.signinSuccess, AuthApiActions.signupSuccess),
         tap(() => {
-          console.log('navigate!');
           this.router.navigate(['']);
         })
       );
@@ -74,14 +78,21 @@ export class AuthEffects {
   );
 
   private decodeToken(token: string) {
+    localStorage.setItem('access_token', token);
     const decoded = this.jwtService.decodeToken(token) as DecodedToken;
     return decoded;
+  }
+
+  private saveUserData(data: DecodedToken) {
+    localStorage.setItem('username', data.username);
+    localStorage.setItem('user_id', data.userId.toString());
   }
 
   constructor(
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
-    private jwtService: JwtHelperService
+    private jwtService: JwtHelperService,
+    private snackBar: MatSnackBar
   ) {}
 }

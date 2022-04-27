@@ -1,17 +1,23 @@
 <mat-toolbar class="toolbar" color="primary">
   <span>Full-Stack To Do</span>
   <span class="spacer"></span>
-  <ng-container *ngIf="user$ | async as user">
-    <mat-icon>account_circle</mat-icon>
-    <span>{{ user.username }}</span>
-    <button
-      mat-icon-button
-      color="primary"
-      aria-label="Sign out"
-      (click)="onSignout()"
-    >
-      <mat-icon>logout</mat-icon>
-    </button>
+  <ng-container *ngIf="authenticated$ | async">
+    <ng-container *ngIf="user$ | async as user">
+      <span>{{ user.username }}</span>
+      <button
+        mat-icon-button
+        aria-label="Sign out"
+        matTooltip="Sign out"
+        (click)="onSignout()"
+      >
+        <mat-icon>logout</mat-icon>
+      </button>
+    </ng-container>
   </ng-container>
 </mat-toolbar>
+<mat-progress-bar
+  mode="indeterminate"
+  class="progress-bar"
+  *ngIf="(loadingAuth$ | async) || (loadingTodo$ | async)"
+></mat-progress-bar>
 <router-outlet></router-outlet>
