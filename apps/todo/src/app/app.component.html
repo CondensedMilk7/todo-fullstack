@@ -1,1 +1,17 @@
+<mat-toolbar class="toolbar" color="primary">
+  <span>Full-Stack To Do</span>
+  <span class="spacer"></span>
+  <ng-container *ngIf="user$ | async as user">
+    <mat-icon>account_circle</mat-icon>
+    <span>{{ user.username }}</span>
+    <button
+      mat-icon-button
+      color="primary"
+      aria-label="Sign out"
+      (click)="onSignout()"
+    >
+      <mat-icon>logout</mat-icon>
+    </button>
+  </ng-container>
+</mat-toolbar>
 <router-outlet></router-outlet>

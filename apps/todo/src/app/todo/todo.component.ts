@@ -14,7 +14,5 @@ export class TodoComponent implements OnInit {
 
   items$ = this.store.select(TodoSelectors.selectItems);
 
-  ngOnInit(): void {
-    this.store.dispatch(TodoActions.getItems());
-  }
+  ngOnInit(): void {}
 }

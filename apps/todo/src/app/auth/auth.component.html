@@ -1,7 +1,79 @@
-<form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
-  <label for="email">Email</label>
-  <input type="text" id="email" formControlName="email" />
-  <label for="password">Password</label>
-  <input type="password" id="password" formControlName="password" />
-  <button type="submit">Submit</button>
-</form>
+<div class="form-container">
+  <mat-card class="form-card">
+    <mat-tab-group>
+      <mat-tab label="Sign in">
+        <div class="tab-content">
+          <mat-card-title> Sign In </mat-card-title>
+          <mat-card-content>
+            <form
+              class="signin-form"
+              [formGroup]="signinForm"
+              (ngSubmit)="onSignin()"
+            >
+              <mat-form-field>
+                <mat-label for="email">Email</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="email"
+                  formControlName="email"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label for="password">Password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  id="password"
+                  formControlName="password"
+                />
+              </mat-form-field>
+              <button mat-button color="primary" type="submit">Sign In</button>
+            </form>
+          </mat-card-content>
+        </div>
+      </mat-tab>
+      <mat-tab label="Sign up">
+        <div class="tab-content">
+          <mat-card-title> Sign Up </mat-card-title>
+          <mat-card-content>
+            <form
+              class="signup-form"
+              [formGroup]="signupForm"
+              (ngSubmit)="onSignup()"
+            >
+              <mat-form-field>
+                <mat-label for="username">Username</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="username"
+                  formControlName="username"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label for="email">Email</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="email"
+                  formControlName="email"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label for="password">Password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  id="password"
+                  formControlName="password"
+                />
+              </mat-form-field>
+              <button mat-button color="primary" type="submit">Sign Up</button>
+            </form>
+          </mat-card-content>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

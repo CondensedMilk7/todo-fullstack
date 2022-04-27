@@ -28,3 +28,16 @@ export interface SigninResponse {
 export interface SignupResponse {
   access_token: string;
 }
+
+export interface ErrorResponse {
+  statusCode: number;
+  message: string;
+  error?: string;
+}
+
+export interface DecodedToken {
+  userId: number;
+  username: string;
+  iat: number;
+  exp: number;
+}

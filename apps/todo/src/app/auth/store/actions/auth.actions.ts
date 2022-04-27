@@ -10,3 +10,5 @@ export const signUp = createAction(
   '[Signup Page] Sign up',
   props<{ payload: SignupRequest }>()
 );
+
+export const signOut = createAction('[Toolbar] Sign out');

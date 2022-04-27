@@ -1,11 +1,19 @@
 import { createAction, props } from '@ngrx/store';
-import { SigninResponse, SignupResponse } from '@todo/api-interfaces';
+import { DecodedToken, ErrorResponse } from '@todo/api-interfaces';
 
 export const signupSuccess = createAction(
   '[Auth Api] Signup successful',
-  props<{ response: SignupResponse }>()
+  props<{ decodedToken: DecodedToken }>()
 );
 export const signinSuccess = createAction(
   '[Auth Api] Signin Successful',
-  props<{ response: SigninResponse }>()
+  props<{ decodedToken: DecodedToken }>()
+);
+export const signupFail = createAction(
+  '[Auth Api] Signup failed',
+  props<{ response: ErrorResponse }>()
+);
+export const signinFail = createAction(
+  '[Auth Api] Signin failed',
+  props<{ response: ErrorResponse }>()
 );
