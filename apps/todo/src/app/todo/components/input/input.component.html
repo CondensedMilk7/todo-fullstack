@@ -1,0 +1,14 @@
+<form class="todo-form" (submit)="onAddItem()">
+  <mat-form-field>
+    <mat-label>Add new task</mat-label>
+    <input
+      matInput
+      type="text"
+      class="todo-input"
+      [formControl]="description"
+    />
+  </mat-form-field>
+  <button mat-mini-fab color="primary" [disabled]="description.invalid">
+    <mat-icon>add</mat-icon>
+  </button>
+</form>

@@ -7,7 +7,7 @@ export const selectLoading = createSelector(
   selectTodo,
   (state) => state.loading
 );
-export const selectSelectedItem = createSelector(
+export const selectEditingItem = createSelector(
   selectTodo,
-  (state) => state.selectedItemId
+  (state) => state.editingItem
 );

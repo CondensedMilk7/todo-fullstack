@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { TodoActions } from './store/actions';
 import { TodoSelectors } from './store/selectors';
 
 @Component({
@@ -19,5 +20,26 @@ export class TodoComponent implements OnInit {
 
   items$ = this.store.select(TodoSelectors.selectItems);
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(TodoActions.getItems());
+  }
+
+  onAddItem(description: string) {
+    this.store.dispatch(TodoActions.createItem({ description }));
+  }
+
+  onDeleteItem(id: number) {
+    this.store.dispatch(TodoActions.deleteItem({ id }));
+  }
+
+  onOpenEditor(id: number) {
+    this.store.dispatch(TodoActions.openItemEditor({ id }));
+  }
+
+  onCheckItem(item: { id: number; checked: boolean }) {
+    console.log(item.checked);
+    this.store.dispatch(
+      TodoActions.updateItem({ id: item.id, done: item.checked })
+    );
+  }
 }

@@ -1,0 +1,13 @@
+.todo-item {
+  margin: 0.5rem;
+
+  mat-card-actions {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .actions-divider {
+    flex-grow: 1;
+  }
+}

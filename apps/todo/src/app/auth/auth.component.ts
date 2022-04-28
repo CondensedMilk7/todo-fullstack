@@ -6,7 +6,6 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { SigninRequest, SignupRequest } from '@todo/api-interfaces';
-import { AuthService } from './auth.service';
 import { AuthActions } from './store/actions';
 import { AuthSelectors } from './store/selectors';
 
@@ -38,7 +37,7 @@ export class AuthComponent {
     ]),
   });
 
-  constructor(private authService: AuthService, private store: Store) {}
+  constructor(private store: Store) {}
 
   onSignin() {
     this.store.dispatch(

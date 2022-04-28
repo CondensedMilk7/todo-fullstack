@@ -5,6 +5,10 @@ export interface TodoItem {
   userId?: number;
 }
 
+export interface GetItemsResponse {
+  data: TodoItem[];
+}
+
 export interface DeleteItemResponse {
   message: string;
   itemId: number;
@@ -40,4 +44,15 @@ export interface DecodedToken {
   username: string;
   iat: number;
   exp: number;
+}
+
+export interface CreateItemRequest {
+  description: string;
+  done?: boolean;
+}
+
+export interface UpdateItemRequest {
+  id: number;
+  description?: string;
+  done?: boolean;
 }

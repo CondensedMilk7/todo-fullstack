@@ -1,11 +1,11 @@
 ### Get all items
 GET http://localhost:3333/api
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoiTnVnemFyIiwiaWF0IjoxNjUwODk4ODU3LCJleHAiOjE2NTA5ODUyNTd9.qSRjQYicCt7mwjO6wIr7tPItUV8KliqOYHe3Kf4-Wxc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiVGVuZ2l6IiwiaWF0IjoxNjUxMTY2ODM4LCJleHAiOjE2NTEyNTMyMzh9._xvkW22TnwnRf9TKP6wqW07fLuaY7NE8K1YK6mChx8U
 
 ### Create a new to do item
 POST http://localhost:3333/api
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoiTnVnemFyIiwiaWF0IjoxNjUwODk4ODU3LCJleHAiOjE2NTA5ODUyNTd9.qSRjQYicCt7mwjO6wIr7tPItUV8KliqOYHe3Kf4-Wxc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiVGVuZ2l6IiwiaWF0IjoxNjUxMTY2ODM4LCJleHAiOjE2NTEyNTMyMzh9._xvkW22TnwnRf9TKP6wqW07fLuaY7NE8K1YK6mChx8U
 
 {
     "description": "Pray"
@@ -14,7 +14,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZ
 ### Update existing item
 PATCH http://localhost:3333/api
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoiTnVnemFyIiwiaWF0IjoxNjUwODk4ODU3LCJleHAiOjE2NTA5ODUyNTd9.qSRjQYicCt7mwjO6wIr7tPItUV8KliqOYHe3Kf4-Wxc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiVGVuZ2l6IiwiaWF0IjoxNjUxMTY2ODM4LCJleHAiOjE2NTEyNTMyMzh9._xvkW22TnwnRf9TKP6wqW07fLuaY7NE8K1YK6mChx8U
 
 
 {
@@ -26,7 +26,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZ
 ### Delete item
 DELETE http://localhost:3333/api/14
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoiTnVnemFyIiwiaWF0IjoxNjUwODk4ODU3LCJleHAiOjE2NTA5ODUyNTd9.qSRjQYicCt7mwjO6wIr7tPItUV8KliqOYHe3Kf4-Wxc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiVGVuZ2l6IiwiaWF0IjoxNjUxMTY2ODM4LCJleHAiOjE2NTEyNTMyMzh9._xvkW22TnwnRf9TKP6wqW07fLuaY7NE8K1YK6mChx8U
 
 ### Sign up a new user
 POST http://localhost:3333/api/auth/signup
@@ -44,9 +44,9 @@ Content-Type: application/json
 
 {
     "email": "test@test.com",
-    "password": "hello_worldd"
+    "password": "hello_world"
 }
 
 ### Get currently signed in user id (test route)
 GET http://localhost:3333/api/auth/whoami
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoiTnVnemFyIiwiaWF0IjoxNjUwODk4ODU3LCJleHAiOjE2NTA5ODUyNTd9.qSRjQYicCt7mwjO6wIr7tPItUV8KliqOYHe3Kf4-Wxc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiVGVuZ2l6IiwiaWF0IjoxNjUxMTY2ODM4LCJleHAiOjE2NTEyNTMyMzh9._xvkW22TnwnRf9TKP6wqW07fLuaY7NE8K1YK6mChx8U

@@ -1,5 +1,6 @@
 <mat-toolbar class="toolbar" color="primary">
-  <span>Full-Stack To Do</span>
+  <mat-icon>library_add_check</mat-icon>
+  <span> DoStack</span>
   <span class="spacer"></span>
   <ng-container *ngIf="authenticated$ | async">
     <ng-container *ngIf="user$ | async as user">

@@ -1,1 +1,11 @@
-<h1>todo works!</h1>
+<div class="todo-container">
+  <todo-input (addItem)="onAddItem($event)"></todo-input>
+  <ng-container *ngIf="items$ | async as items">
+    <todo-item
+      *ngFor="let item of items"
+      [item]="item"
+      (deleteItem)="onDeleteItem($event)"
+      (checkItem)="onCheckItem($event)"
+    ></todo-item>
+  </ng-container>
+</div>

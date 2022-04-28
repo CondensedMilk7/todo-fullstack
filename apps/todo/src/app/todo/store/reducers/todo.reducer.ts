@@ -5,7 +5,7 @@ import { TodoUtils } from '../../todo.utils';
 
 const initialState: TodoState = {
   items: [],
-  selectedItemId: null,
+  editingItem: null,
   loading: false,
 };
 
@@ -26,6 +26,10 @@ export const todoReducer = createReducer(
     loading: false,
   })),
   // Update item
+  on(TodoActions.openItemEditor, (state, { id }) => ({
+    ...state,
+    editingItem: id,
+  })),
   on(TodoActions.updateItem, (state) => ({ ...state, loading: true })),
   on(TodoApiActions.updateItemSuccess, (state, { item }) => ({
     ...state,
