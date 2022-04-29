@@ -16,11 +16,13 @@
     </ng-container>
   </ng-container>
 </mat-toolbar>
-<mat-progress-bar
-  mode="indeterminate"
-  class="progress-bar"
-  *ngIf="(loadingAuth$ | async) || (loadingTodo$ | async)"
-></mat-progress-bar>
+<div class="progress-bar-container">
+  <mat-progress-bar
+    mode="indeterminate"
+    class="progress-bar"
+    *ngIf="(loadingAuth$ | async) || (loadingTodo$ | async)"
+  ></mat-progress-bar>
+</div>
 <div class="outlet-container">
   <router-outlet></router-outlet>
 </div>

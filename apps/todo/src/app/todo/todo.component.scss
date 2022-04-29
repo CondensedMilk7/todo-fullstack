@@ -6,3 +6,13 @@
   margin-top: 2rem;
   overflow-x: hidden;
 }
+
+.todo-tabs {
+  max-height: 75vh;
+}
+
+@media (max-width: 600px) {
+  .todo-container {
+    margin-top: 0;
+  }
+}

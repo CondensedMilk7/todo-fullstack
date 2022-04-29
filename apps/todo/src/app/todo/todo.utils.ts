@@ -16,11 +16,14 @@ export class TodoUtils {
   }
 
   public static filterItems(items: TodoItem[]) {
-    const result = items;
+    // Assign to an accessable memory reference
+    const itemsToFIlter = [...items];
+    // Reversed to keep newest at the top
+    const itemsReversed = itemsToFIlter.reverse();
     return {
-      all: result,
-      done: result.filter((i) => i.done === true),
-      active: result.filter((i) => i.done === false),
+      all: itemsReversed,
+      done: itemsReversed.filter((i) => i.done === true),
+      active: itemsReversed.filter((i) => i.done === false),
     };
   }
 }
