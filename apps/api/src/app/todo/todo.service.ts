@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteItemResponse } from '@todo/api-interfaces';
 import { Repository } from 'typeorm';
 import { User } from '../auth/user.entity';
 import { CreateItemDto } from './dtos/create-item.dto';
@@ -46,12 +45,15 @@ export class TodoService {
       );
     }
 
-    item.done = done || item.done;
+    item.done = done;
     item.description = description || item.description;
     return this.repo.save(item);
   }
 
-  async deleteItem(id: number, user: User): Promise<DeleteItemResponse> {
+  async deleteItem(
+    id: number,
+    user: User
+  ): Promise<ApiInterfaces.DeleteItemResponse> {
     const item = await this.repo
       .createQueryBuilder('todo')
       .relation('user')

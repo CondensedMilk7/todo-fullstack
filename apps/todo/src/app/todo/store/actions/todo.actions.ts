@@ -21,3 +21,5 @@ export const openItemEditor = createAction(
   '[Todo Page] Open item editor',
   props<{ id: number }>()
 );
+
+export const cancelEditItem = createAction('[Todo Page] Cancel item edit');

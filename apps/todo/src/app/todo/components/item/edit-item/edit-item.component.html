@@ -1,0 +1,29 @@
+<mat-form-field class="edit-form-field">
+  <mat-label>Edit</mat-label>
+  <input
+    matInput
+    type="text"
+    [value]="description"
+    [formControl]="newDescControl"
+  />
+</mat-form-field>
+<mat-card-actions class="edit-cations">
+  <span class="actions-divider"></span>
+  <button
+    mat-icon-button
+    color="primary"
+    matTooltip="Save"
+    [disabled]="newDescControl.invalid || descMatching"
+    (click)="onSaveEdit()"
+  >
+    <mat-icon>check</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    color="warn"
+    matTooltip="Cancel"
+    (click)="onCancelEdit()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-card-actions>

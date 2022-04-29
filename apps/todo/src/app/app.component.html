@@ -21,4 +21,6 @@
   class="progress-bar"
   *ngIf="(loadingAuth$ | async) || (loadingTodo$ | async)"
 ></mat-progress-bar>
-<router-outlet></router-outlet>
+<div class="outlet-container">
+  <router-outlet></router-outlet>
+</div>

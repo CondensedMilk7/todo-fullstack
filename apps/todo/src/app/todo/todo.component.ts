@@ -19,6 +19,7 @@ export class TodoComponent implements OnInit {
   constructor(private store: Store) {}
 
   items$ = this.store.select(TodoSelectors.selectItems);
+  itemInEditing$ = this.store.select(TodoSelectors.selectEditingItem);
 
   ngOnInit(): void {
     this.store.dispatch(TodoActions.getItems());
@@ -37,9 +38,16 @@ export class TodoComponent implements OnInit {
   }
 
   onCheckItem(item: { id: number; checked: boolean }) {
-    console.log(item.checked);
     this.store.dispatch(
       TodoActions.updateItem({ id: item.id, done: item.checked })
     );
+  }
+
+  onCancelEdit() {
+    this.store.dispatch(TodoActions.cancelEditItem());
+  }
+
+  onSaveEdit(item: { id: number; description: string }) {
+    this.store.dispatch(TodoActions.updateItem(item));
   }
 }

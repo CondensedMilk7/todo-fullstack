@@ -7,8 +7,8 @@ import { TodoActions, TodoApiActions } from '../actions';
 
 @Injectable()
 export class TodoEffects {
-  getItems$ = createEffect(() =>
-    this.actions$.pipe(
+  getItems$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(TodoActions.getItems),
       concatMap(() =>
         this.todoService.getItems().pipe(
@@ -21,8 +21,8 @@ export class TodoEffects {
           })
         )
       )
-    )
-  );
+    );
+  });
 
   createItem$ = createEffect(() => {
     return this.actions$.pipe(

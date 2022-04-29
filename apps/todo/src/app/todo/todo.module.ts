@@ -14,8 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../../environments/environment';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { EditItemComponent } from './components/item/edit-item/edit-item.component';
 
 @NgModule({
   imports: [
@@ -26,15 +26,16 @@ import { environment } from '../../environments/environment';
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     StoreModule.forFeature('todo', todoReducer),
     EffectsModule.forFeature([TodoEffects]),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
-      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
-    }),
   ],
-  declarations: [TodoComponent, ItemComponent, InputComponent],
+  declarations: [
+    TodoComponent,
+    ItemComponent,
+    InputComponent,
+    EditItemComponent,
+  ],
 })
 export class TodoModule {}

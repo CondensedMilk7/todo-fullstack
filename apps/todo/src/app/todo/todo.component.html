@@ -4,8 +4,12 @@
     <todo-item
       *ngFor="let item of items"
       [item]="item"
+      [editingItem]="itemInEditing$ | async"
       (deleteItem)="onDeleteItem($event)"
       (checkItem)="onCheckItem($event)"
+      (openEditor)="onOpenEditor($event)"
+      (cancelEdit)="onCancelEdit()"
+      (saveEdit)="onSaveEdit($event)"
     ></todo-item>
   </ng-container>
 </div>

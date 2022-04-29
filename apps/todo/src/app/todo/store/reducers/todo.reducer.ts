@@ -12,32 +12,58 @@ const initialState: TodoState = {
 export const todoReducer = createReducer(
   initialState,
   //Get items
-  on(TodoActions.getItems, (state) => ({ ...state, loading: true })),
-  on(TodoApiActions.getItemsSuccess, (state, { items }) => ({
-    ...state,
-    loading: false,
-    items: items,
-  })),
+  on(TodoActions.getItems, (state): TodoState => ({ ...state, loading: true })),
+  on(
+    TodoApiActions.getItemsSuccess,
+    (state, { items }): TodoState => ({
+      ...state,
+      loading: false,
+      items: items,
+    })
+  ),
   // Create item
-  on(TodoActions.createItem, (state) => ({ ...state, loading: true })),
-  on(TodoApiActions.createItemSuccess, (state, { item }) => ({
-    ...state,
-    items: [...state.items, item],
-    loading: false,
-  })),
+  on(
+    TodoActions.createItem,
+    (state): TodoState => ({ ...state, loading: true })
+  ),
+  on(
+    TodoApiActions.createItemSuccess,
+    (state, { item }): TodoState => ({
+      ...state,
+      items: [...state.items, item],
+      loading: false,
+    })
+  ),
   // Update item
-  on(TodoActions.openItemEditor, (state, { id }) => ({
-    ...state,
-    editingItem: id,
-  })),
-  on(TodoActions.updateItem, (state) => ({ ...state, loading: true })),
+  on(
+    TodoActions.openItemEditor,
+    (state, { id }): TodoState => ({
+      ...state,
+      editingItem: id,
+    })
+  ),
+  on(
+    TodoActions.cancelEditItem,
+    (state): TodoState => ({
+      ...state,
+      editingItem: null,
+    })
+  ),
+  on(
+    TodoActions.updateItem,
+    (state): TodoState => ({ ...state, loading: true })
+  ),
   on(TodoApiActions.updateItemSuccess, (state, { item }) => ({
     ...state,
     items: TodoUtils.replaceItem(state.items, item),
     loading: false,
+    editingItem: null,
   })),
   //Delete item
-  on(TodoActions.deleteItem, (state) => ({ ...state, loading: true })),
+  on(
+    TodoActions.deleteItem,
+    (state): TodoState => ({ ...state, loading: true })
+  ),
   on(TodoApiActions.deleteItemSuccess, (state, { response }) => ({
     ...state,
     items: TodoUtils.removeItem(state.items, response.itemId),

@@ -8,7 +8,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { TodoModule } from './todo/todo.module';
-import { todoReducer } from './todo/store/reducers';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './auth/auth.guard';
@@ -17,6 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,8 +39,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
       },
     }),
     RouterModule.forRoot(appRoutes),
-    StoreModule.forRoot([todoReducer]),
+    StoreModule.forRoot([]),
     EffectsModule.forRoot(),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

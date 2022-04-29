@@ -17,6 +17,7 @@ import { AuthSelectors } from './store/selectors';
   encapsulation: ViewEncapsulation.None,
 })
 export class AuthComponent {
+  minPassLength = 8;
   // selectors
   loading$ = this.store.select(AuthSelectors.selectLoading);
   error$ = this.store.select(AuthSelectors.selectError);
@@ -33,7 +34,7 @@ export class AuthComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(8),
+      Validators.minLength(this.minPassLength),
     ]),
   });
 

@@ -1,19 +1,38 @@
 <mat-card class="todo-item">
-  <div>
-    <span> {{ item.description }} </span>
-  </div>
-  <mat-card-actions>
-    <mat-checkbox
-      color="primary"
-      [checked]="item.done"
-      (change)="onCheckItem($event)"
-    ></mat-checkbox>
-    <span class="actions-divider"></span>
-    <button mat-icon-button color="accent" (click)="onOpenEditor()">
-      <mat-icon>edit</mat-icon>
-    </button>
-    <button mat-icon-button color="warn" (click)="onDeleteItem()">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </mat-card-actions>
+  <ng-container *ngIf="!editing">
+    <div>
+      <span> {{ item.description }} </span>
+    </div>
+    <mat-card-actions>
+      <mat-checkbox
+        color="primary"
+        [checked]="item.done"
+        (change)="onCheckItem($event)"
+      ></mat-checkbox>
+      <span class="actions-divider"></span>
+      <button
+        mat-icon-button
+        color="accent"
+        (click)="onOpenEditor()"
+        matTooltip="Edit"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="onDeleteItem()"
+        matTooltip="Delete"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </ng-container>
+  <ng-container *ngIf="editing">
+    <todo-edit-item
+      [description]="item.description"
+      (cancelEdit)="onCancelEdit()"
+      (saveEdit)="onSaveEdit($event)"
+    ></todo-edit-item>
+  </ng-container>
 </mat-card>

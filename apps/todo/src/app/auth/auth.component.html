@@ -29,7 +29,7 @@
                 />
               </mat-form-field>
               <button
-                mat-button
+                mat-flat-button
                 color="primary"
                 type="submit"
                 [disabled]="signinForm.invalid || (loading$ | async)"
@@ -66,6 +66,7 @@
                   id="email"
                   formControlName="email"
                 />
+                <mat-hint>Please use a fake email</mat-hint>
               </mat-form-field>
               <mat-form-field>
                 <mat-label for="password">Password</mat-label>
@@ -75,9 +76,15 @@
                   id="password"
                   formControlName="password"
                 />
+                <mat-hint
+                  align="start"
+                  *ngIf="signupForm.controls['password'].invalid"
+                  >Password must be at least {{ minPassLength }} characters
+                  long</mat-hint
+                >
               </mat-form-field>
               <button
-                mat-button
+                mat-flat-button
                 color="primary"
                 type="submit"
                 [disabled]="signupForm.invalid || (loading$ | async)"

@@ -20,52 +20,67 @@ export const authReducer = createReducer(
   initialState,
 
   // Signin
-  on(AuthActions.signIn, (state) => ({ ...state, loading: true })),
-  on(AuthApiActions.signinSuccess, (state, { decodedToken }) => ({
-    ...state,
-    loading: false,
-    authenticated: true,
-    user: {
-      id: decodedToken.userId,
-      username: decodedToken.username,
-    },
-    token: {
-      iat: decodedToken.iat,
-      exp: decodedToken.exp,
-    },
-  })),
-  on(AuthApiActions.signinFail, (state, { response }) => ({
-    ...state,
-    loading: false,
-    error: response.message,
-  })),
+  on(AuthActions.signIn, (state): AuthState => ({ ...state, loading: true })),
+  on(
+    AuthApiActions.signinSuccess,
+    (state, { decodedToken }): AuthState => ({
+      ...state,
+      loading: false,
+      authenticated: true,
+      user: {
+        id: decodedToken.userId,
+        username: decodedToken.username,
+      },
+      token: {
+        iat: decodedToken.iat,
+        exp: decodedToken.exp,
+      },
+    })
+  ),
+  on(
+    AuthApiActions.signinFail,
+    (state, { response }): AuthState => ({
+      ...state,
+      loading: false,
+      error: response.message,
+    })
+  ),
 
   // Signup
-  on(AuthActions.signUp, (state) => ({ ...state, loading: true })),
-  on(AuthApiActions.signupSuccess, (state, { decodedToken }) => ({
-    ...state,
-    loading: false,
-    authenticated: true,
-    user: {
-      id: decodedToken.userId,
-      username: decodedToken.username,
-    },
-    token: {
-      iat: decodedToken.iat,
-      exp: decodedToken.exp,
-    },
-  })),
-  on(AuthApiActions.signupFail, (state, { response }) => ({
-    ...state,
-    loading: false,
-    error: response.message,
-  })),
+  on(AuthActions.signUp, (state): AuthState => ({ ...state, loading: true })),
+  on(
+    AuthApiActions.signupSuccess,
+    (state, { decodedToken }): AuthState => ({
+      ...state,
+      loading: false,
+      authenticated: true,
+      user: {
+        id: decodedToken.userId,
+        username: decodedToken.username,
+      },
+      token: {
+        iat: decodedToken.iat,
+        exp: decodedToken.exp,
+      },
+    })
+  ),
+  on(
+    AuthApiActions.signupFail,
+    (state, { response }): AuthState => ({
+      ...state,
+      loading: false,
+      error: response.message,
+    })
+  ),
 
   // Signout
-  on(AuthActions.signOut, (state) => ({
-    ...state,
-    authenticated: false,
-    user: { username: '', id: 0 },
-    token: { iat: 0, exp: 0 },
-  }))
+  on(
+    AuthActions.signOut,
+    (state): AuthState => ({
+      ...state,
+      authenticated: false,
+      user: { username: '', id: 0 },
+      token: { iat: 0, exp: 0 },
+    })
+  )
 );

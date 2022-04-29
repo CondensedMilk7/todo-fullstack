@@ -1,5 +1,6 @@
 .toolbar {
   display: flex;
+  position: fixed;
 }
 
 .spacer {
@@ -7,7 +8,11 @@
 }
 
 .progress-bar {
-  position: relative;
-  bottom: 0;
+  position: fixed;
+  bottom: top;
   left: 0;
+}
+
+.outlet-container {
+  padding-top: 4rem;
 }
