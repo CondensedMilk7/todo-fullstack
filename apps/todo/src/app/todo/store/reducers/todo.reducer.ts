@@ -4,7 +4,11 @@ import { TodoState } from '../state';
 import { TodoUtils } from '../../todo.utils';
 
 const initialState: TodoState = {
-  items: [],
+  items: {
+    all: [],
+    active: [],
+    done: [],
+  },
   editingItem: null,
   loading: false,
 };
@@ -18,7 +22,7 @@ export const todoReducer = createReducer(
     (state, { items }): TodoState => ({
       ...state,
       loading: false,
-      items: items,
+      items: TodoUtils.filterItems(items),
     })
   ),
   // Create item
@@ -30,7 +34,7 @@ export const todoReducer = createReducer(
     TodoApiActions.createItemSuccess,
     (state, { item }): TodoState => ({
       ...state,
-      items: [...state.items, item],
+      items: TodoUtils.filterItems([...state.items.all, item]),
       loading: false,
     })
   ),
@@ -55,7 +59,7 @@ export const todoReducer = createReducer(
   ),
   on(TodoApiActions.updateItemSuccess, (state, { item }) => ({
     ...state,
-    items: TodoUtils.replaceItem(state.items, item),
+    items: TodoUtils.filterItems(TodoUtils.replaceItem(state.items.all, item)),
     loading: false,
     editingItem: null,
   })),
@@ -66,7 +70,9 @@ export const todoReducer = createReducer(
   ),
   on(TodoApiActions.deleteItemSuccess, (state, { response }) => ({
     ...state,
-    items: TodoUtils.removeItem(state.items, response.itemId),
+    items: TodoUtils.filterItems(
+      TodoUtils.removeItem(state.items.all, response.itemId)
+    ),
     loading: false,
   }))
 );

@@ -1,15 +1,50 @@
 <div class="todo-container">
   <todo-input (addItem)="onAddItem($event)"></todo-input>
   <ng-container *ngIf="items$ | async as items">
-    <todo-item
-      *ngFor="let item of items"
-      [item]="item"
-      [editingItem]="itemInEditing$ | async"
-      (deleteItem)="onDeleteItem($event)"
-      (checkItem)="onCheckItem($event)"
-      (openEditor)="onOpenEditor($event)"
-      (cancelEdit)="onCancelEdit()"
-      (saveEdit)="onSaveEdit($event)"
-    ></todo-item>
+    <mat-tab-group class="todo-tabs" mat-align-tabs="center">
+      <!-- TODO: Refactor this so I don't repeat the code -->
+      <mat-tab label="all">
+        <ng-template matTabContent>
+          <todo-item
+            *ngFor="let item of items.all"
+            [item]="item"
+            [editingItem]="itemInEditing$ | async"
+            (deleteItem)="onDeleteItem($event)"
+            (checkItem)="onCheckItem($event)"
+            (openEditor)="onOpenEditor($event)"
+            (cancelEdit)="onCancelEdit()"
+            (saveEdit)="onSaveEdit($event)"
+          ></todo-item>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="active">
+        <ng-template matTabContent>
+          <todo-item
+            *ngFor="let item of items.active"
+            [item]="item"
+            [editingItem]="itemInEditing$ | async"
+            (deleteItem)="onDeleteItem($event)"
+            (checkItem)="onCheckItem($event)"
+            (openEditor)="onOpenEditor($event)"
+            (cancelEdit)="onCancelEdit()"
+            (saveEdit)="onSaveEdit($event)"
+          ></todo-item>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="done">
+        <ng-template matTabContent>
+          <todo-item
+            *ngFor="let item of items.done"
+            [item]="item"
+            [editingItem]="itemInEditing$ | async"
+            (deleteItem)="onDeleteItem($event)"
+            (checkItem)="onCheckItem($event)"
+            (openEditor)="onOpenEditor($event)"
+            (cancelEdit)="onCancelEdit()"
+            (saveEdit)="onSaveEdit($event)"
+          ></todo-item>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
   </ng-container>
 </div>

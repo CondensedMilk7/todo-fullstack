@@ -14,4 +14,13 @@ export class TodoUtils {
     result.splice(index, 1);
     return result;
   }
+
+  public static filterItems(items: TodoItem[]) {
+    const result = items;
+    return {
+      all: result,
+      done: result.filter((i) => i.done === true),
+      active: result.filter((i) => i.done === false),
+    };
+  }
 }

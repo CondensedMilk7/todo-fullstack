@@ -1,7 +1,8 @@
 .todo-container {
   margin: auto;
-  max-width: 28rem;
+  max-width: 30rem;
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
+  overflow-x: hidden;
 }

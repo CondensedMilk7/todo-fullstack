@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EditItemComponent } from './components/item/edit-item/edit-item.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { EditItemComponent } from './components/item/edit-item/edit-item.compone
     MatIconModule,
     MatSnackBarModule,
     MatTooltipModule,
+    MatTabsModule,
     ReactiveFormsModule,
     StoreModule.forFeature('todo', todoReducer),
     EffectsModule.forFeature([TodoEffects]),
