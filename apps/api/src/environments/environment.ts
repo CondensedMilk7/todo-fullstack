@@ -8,3 +8,6 @@ export const environment = {
     expiresIn: '1d',
   },
 };
+
+// Putting secret keys in environment files that are accessable within repository is bad practice.
+// env files should be used that are ignored by git. Since it is just an example app, we don't mind it.
